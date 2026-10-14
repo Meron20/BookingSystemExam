@@ -15,8 +15,10 @@ public class BookingService(IBookingRepository repository)
 
     public IReadOnlyList<Booking> GetActiveBookings()
     {
+      
         // This method has not been completed.
         return repository.GetAll();
+          
     }
 
     public IReadOnlyList<Booking> Search(string searchTerm)
@@ -24,7 +26,7 @@ public class BookingService(IBookingRepository repository)
         return repository.GetAll()
             .Where(booking =>
                 !booking.IsCancelled &&
-                booking.CustomerName.Contains(searchTerm))
+                booking.CustomerName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase ))
             .ToList();
     }
 
